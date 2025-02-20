@@ -1,0 +1,17 @@
+# Use OpenJDK 17 as base image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the Maven build JAR into the container
+COPY target/employee-management.jar employee-management.jar
+
+# Set environment variable for active profile
+ENV SPRING_PROFILE=prod
+
+# Expose the port Spring Boot runs on
+EXPOSE 8080
+
+# Run the application
+CMD ["java", "-jar", "employee-management.jar"]
